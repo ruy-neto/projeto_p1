@@ -6,10 +6,19 @@ import { Button, Container, Modal, Nav, Navbar} from "react-bootstrap";
 import { Scanner } from '@yudiel/react-qr-scanner';
 import { useState } from "react";
 import Head from 'next/head';
+import dynamic from 'next/dynamic'
+
+const DynamicQrScanner = dynamic(() => import('@yudiel/react-qr-scanner').then(mod => mod.QrScanner), {
+    ssr: false
+  });
+
 
 function FluxControlPage() {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
+  const DynamicQrScanner = dynamic(() => import('@yudiel/react-qr-scanner').then(mod => mod.QrScanner), {
+    ssr: false
+  });
 
   const registerQRCodeReaded = (msg, rst) => {
     handleModalOpen();
@@ -47,7 +56,7 @@ function FluxControlPage() {
         </Container>
       </Navbar>
       <Container>
-      <Scanner
+      <DynamicQrScanner
             onResult={(text, result) => registerQRCodeReaded(text, result)}
             onError={(error) => console.log(error?.message)}
         />
