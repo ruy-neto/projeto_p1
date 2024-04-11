@@ -8,6 +8,9 @@ import Head from 'next/head';
 
 const InicioResponsavelPage = () => {
     const [selectedDate, setSelectedDate] = useState('');
+    const handleDateChange = (event) => {
+      setSelectedDate(event.target.value);
+    };
     let referencia = new Date();
       return (<>
       <Head>

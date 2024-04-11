@@ -11,9 +11,6 @@ const Lista = () => {
         {"dia": referencia,"tipo":"0", "realizador": "André"},
         {"dia": referencia,"tipo":"1", "realizador": "André"},
     ]
-    const handleDateChange = (event) => {
-      setSelectedDate(event.target.value);
-    };
 
     const formatarHoraMinuto = (datala) => {
         const hora = datala.getHours().toString().padStart(2, '0');
