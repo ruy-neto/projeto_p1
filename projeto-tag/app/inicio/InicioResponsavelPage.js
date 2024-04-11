@@ -3,12 +3,16 @@ import React from 'react';
 import { Container, Form, Button ,Row, Col, Navbar, Nav} from 'react-bootstrap';
 import { useState } from 'react';
 import Lista from '../componentes/Lista';
+import Head from 'next/head';
 
 
 const InicioResponsavelPage = () => {
     const [selectedDate, setSelectedDate] = useState('');
     let referencia = new Date();
       return (<>
+      <Head>
+        <title>Inicio</title>
+      </Head>
         <Navbar bg="primary" variant="dark">
           <Navbar.Brand>Lista de Checagem</Navbar.Brand>
         </Navbar>

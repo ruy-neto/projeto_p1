@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Button, Container, Modal, Nav, Navbar} from "react-bootstrap";
 import { Scanner } from '@yudiel/react-qr-scanner';
 import { useState } from "react";
+import Head from 'next/head';
 
 function FluxControlPage() {
   const router = useRouter();
@@ -29,6 +30,9 @@ function FluxControlPage() {
 
   return  (
     <div>
+      <Head>
+        <title>Controle de Fluxo</title>
+      </Head>
       <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
         <Container>
           <Navbar.Brand>Controle de Fluxo</Navbar.Brand>

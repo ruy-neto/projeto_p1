@@ -1,4 +1,5 @@
 'use client'
+import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { Container, Nav, Navbar} from "react-bootstrap";
 import Lista from "../componentes/Lista";
@@ -10,6 +11,9 @@ function RegistroFluxoPage() {
   const goToRegistro = () =>{router.push("/registrofluxo")};
   return (
       <div>
+        <Head>
+        <title>Registro do Fluxo</title>
+      </Head>
         <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
           <Container>
             <Navbar.Brand>Registro de fluxo</Navbar.Brand>

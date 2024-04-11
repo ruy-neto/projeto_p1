@@ -2,6 +2,7 @@
 import React from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
+import Head from 'next/head';
 const { setCookie, getCookie, removeCookie } = require('../Utils/Cookies');
 
 const LoginScreen = () => {
@@ -44,6 +45,9 @@ const LoginScreen = () => {
   };
 
   return (<div>
+    <Head>
+        <title>Login</title>
+      </Head>
     <Container className="vh-100 d-flex justify-content-center align-items-center">
       <Form>
         <Form.Group controlId="formBasicEmail">

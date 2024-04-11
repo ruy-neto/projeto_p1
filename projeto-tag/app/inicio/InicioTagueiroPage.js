@@ -1,4 +1,5 @@
 'use client'
+import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { Container, Nav, Navbar} from "react-bootstrap";
 
@@ -6,6 +7,9 @@ function InicioTagueiroPage() {
   const router = useRouter();
     return (
         <div>
+          <Head>
+        <title>Inicio</title>
+      </Head>
            <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
              <Container>
              <Navbar.Brand>Inicio</Navbar.Brand>
