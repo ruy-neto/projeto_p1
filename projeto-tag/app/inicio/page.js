@@ -4,9 +4,11 @@ import { useState } from 'react';
 const { getCookie} = require('../Utils/Cookies');
 import InicioResponsavelPage from './InicioResponsavelPage';
 import InicioTagueiroPage from './InicioTagueiroPage';
+import { useRouter } from 'next/navigation';
+
 const InicioPage = () => {
     const [access, setAccess] = useState(null);
-
+    const router = useRouter()
     useEffect(() => {
       const accessCookie = getCookie('access-key');
       setAccess(accessCookie);
@@ -16,7 +18,7 @@ const InicioPage = () => {
       // Renderizar um componente de "loading" enquanto a verificação do cookie está em andamento
       return <p>Carregando...</p>;
     }
-
+    console.log("Aquio");
     if (access === "1") {
         console.log("Accesso 1");
         return (<InicioResponsavelPage />);
@@ -25,5 +27,11 @@ const InicioPage = () => {
         console.log("Accesso 2");
         return (<InicioTagueiroPage/>);
     }
-        };
+    
+    if(access === undefined) {
+      router.push("/incio");
+    }
+
+
+};
 export default InicioPage;
