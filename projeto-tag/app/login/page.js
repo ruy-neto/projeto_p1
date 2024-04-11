@@ -12,14 +12,15 @@ const LoginScreen = () => {
 
   const login = () => {
     window.usuario = formData.usuario;
-    console.log("oi1");
-    if (formData.usuario == formData.senha == "1") {
-      console.log("oi2");
+    console.log("oi");
+    if (formData.usuario == "1" && formData.senha == "1") {
+      console.log("oi1");
       setCookie('access-key', '1', { expires: 7 });
       abrirURL();
     }
 
-    if (formData.usuario === formData.senha === 2) {
+    if (formData.usuario == "2" && formData.senha ==  "2") {
+      console.log("oi2");
       setCookie('access-key', '2', { expires: 7 });
       abrirURL();
     }

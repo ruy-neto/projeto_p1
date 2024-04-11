@@ -1,9 +1,9 @@
 "use client"
 import React, { useEffect } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
-const { setCookie, getCookie, removeCookie } = require('../Utils/Cookies');
+const { getCookie} = require('../Utils/Cookies');
 import InicioResponsavelPage from './InicioResponsavelPage';
+import InicioTagueiroPage from './InicioTagueiroPage';
 const InicioPage = () => {
     const [access, setAccess] = useState(null);
 
@@ -16,15 +16,14 @@ const InicioPage = () => {
       // Renderizar um componente de "loading" enquanto a verificação do cookie está em andamento
       return <p>Carregando...</p>;
     }
-  
-    return (
-      <div>
-        {access === "1" ? (
-          <InicioResponsavelPage />
-        ) : (
-          <p>O usuário não está logado.</p>
-        )}
-      </div>
-    );
+
+    if (access === "1") {
+        console.log("Accesso 1");
+        return (<InicioResponsavelPage />);
+    }
+    if (access === "2") {
+        console.log("Accesso 2");
+        return (<InicioTagueiroPage/>);
+    }
         };
 export default InicioPage;
