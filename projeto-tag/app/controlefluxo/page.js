@@ -1,24 +1,25 @@
-'use client';
-
+"use client";
+import React,{ useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-
 import { Button, Container, Modal, Nav, Navbar} from "react-bootstrap";
-import { Scanner } from '@yudiel/react-qr-scanner';
-import { useState } from "react";
 import Head from 'next/head';
 import dynamic from 'next/dynamic'
-
+import { QrScanner } from '@yudiel/react-qr-scanner';
 const DynamicQrScanner = dynamic(() => import('@yudiel/react-qr-scanner').then(mod => mod.QrScanner), {
-    ssr: false
-  });
+  ssr: false
+});
 
 
 function FluxControlPage() {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
-  const DynamicQrScanner = dynamic(() => import('@yudiel/react-qr-scanner').then(mod => mod.QrScanner), {
-    ssr: false
-  });
+  const [showPlayer, setShowPlayer] = useState(false);
+
+
+  useEffect(() => {
+    // Exemplo de código dentro de useEffect que só deve ser executado no cliente
+    setShowPlayer(true);
+  }, []); // O
 
   const registerQRCodeReaded = (msg, rst) => {
     handleModalOpen();
@@ -37,6 +38,7 @@ function FluxControlPage() {
     router.push('/registrofluxo');
   }
 
+  if(!showPlayer) return (<p>Carregando...</p>);
   return  (
     <div>
       <Head>
