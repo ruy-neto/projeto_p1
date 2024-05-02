@@ -71,8 +71,8 @@ const LoginScreen = () => {
         <Button variant="primary" onClick={login}>
           Entrar
         </Button>
-        <p> Usuário 1-1 = Responsavel </p>
-        <p> Usuário 2-2 = Responsavel pelo Registro </p>
+        {/* <p> Usuário 1-1 = Responsavel </p>
+        <p> Usuário 2-2 = Responsavel pelo Registro </p> */}
       </Form>
     </Container>
   </div>

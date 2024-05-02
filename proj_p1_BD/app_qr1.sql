@@ -1,40 +1,35 @@
 CREATE DATABASE app_qr;
 USE app_qr;
 
-CREATE TABLE Administrador
-(
-id_admin int unsigned not null auto_increment,
-login_adm varchar(30),
-senha_adm varchar(30),
-PRIMARY KEY(id_admin)
+CREATE TABLE IF NOT EXISTS USER (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user not null varchar(30),
+    password not null varchar(30),
+    name varchar(30),
+    phone varchar(30),
+    qrcode varchar(30),
+    rank int not null,
+    FOREIGN KEY (parent) REFERENCES USER(id),
 );
 
-CREATE TABLE Aluno
-(
-id_aluno int unsigned not null auto_increment,
-ra int(30) unsigned not null,
-id_respons_al int(30) unsigned not null,
-nome_aluno varchar (40),
-qr_aluno varchar (30),
-PRIMARY KEY(id_aluno),
-FOREIGN KEY (id_respons_al) REFERENCES Responsavel(id_respons)
+CREATE TABLE IF NOT EXISTS USER ( id INT AUTO_INCREMENT PRIMARY KEY, user varchar(30), password varchar(30), name varchar(30), phone varchar(30), qrcode varchar(30), rank INT, parent INT, FOREIGN KEY (parent) REFERENCES USER(id) )
+
+DELIMITER $$
+
+CREATE PROCEDURE inserir_admin(IN user VARCHAR(255), IN password VARCHAR(255))
+BEGIN
+INSERT INTO USER (user, password,rank) VALUES (user, password,5);
+END $$
+DELIMITER;
+
+CREATE TABLE IF NOT EXISTS RECORD (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    FOREIGN KEY (id_student) int not null REFERENCES USER(id),
+    FOREIGN KEY (id_guard) int not null REFERENCES USER(id),
+    date_record TIMESTAMP
 );
-CREATE TABLE Responsavel
-(
-id_respons int unsigned not null auto_increment,
-login_respons varchar(30),
-senha_respons varchar(30),
-telefone_respons varchar(30),
-PRIMARY key(id_respons)
-);
-CREATE TABLE Guarda
-(
-id_guarda int(30) unsigned not null auto_increment,
-nome_guarda varchar (40),
-telefone_guarda varchar (30),
-PRIMARY KEY(id_guarda)
-);
-CREATE TABLE Registro
+
+CREATE TABLE IF NOT EXISTS Registro
 (
 id_registro int(30) unsigned not null auto_increment,
 data_registro date,
