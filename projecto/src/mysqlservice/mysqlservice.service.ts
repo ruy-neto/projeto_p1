@@ -45,4 +45,13 @@ export class MysqlService {
         connection.release();
       }
     }
+
+    async callListParents(): Promise<any> {
+      const connection = await this.pool.getConnection();
+      try {
+        return connection.query(`select id,nome from USER wheren rank = 2`);
+      } finally {
+        connection.release();
+      }
+    }
 }

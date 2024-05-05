@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Post, Render, Req, Session } from '@nestjs/common';
+import { Body, Controller, Get, Post, Render, Req, Res, Session } from '@nestjs/common';
 import { AppService } from './app.service';
-import { Request } from 'express';
+import { Response } from 'express';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 
@@ -16,7 +16,7 @@ export class AppController {
 
   @Post()
   async loginPost(
-    @Req() req: Request,
+    @Res() res: Response,
     @Session() session: Record<string, any>,
     @Body() body: LoginBody) {
     const elements = await this.appService.login(body.user);
@@ -28,9 +28,7 @@ export class AppController {
       if (await bcrypt.compare( body.password,elementPassword)) {
         const token = this.jwtService.sign({ user: element[0][0].user, rank: element[0][0].rank });
         session.token = token;
-        console.log("Sessão: ",session);
-        req.res.redirect('/home')
-        return 'Existe esse usuário';
+        return res.redirect('/home')
       } else {
         return 'Senha errada!';
       }
