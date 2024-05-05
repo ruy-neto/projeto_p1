@@ -2,13 +2,13 @@
 <div id="app">
 <ul class="nav nav-tabs">
   <li :class="[standard ,{active: showCreate()} ]">
-    <a class="nav-link"  aria-current="page"  @click="updateTab(0)">Criar Usuário</a>
+    <a class="nav-link"  aria-current="page"  @click="updateTab(0)">Registrar ponto</a>
   </li>
   <li :class="[standard, {active: showList()} ]">
-    <a class="nav-link"  @click="updateTab(1)">Ver Usuários</a>
+    <a class="nav-link"  @click="updateTab(1)">Ver registros</a>
 </ul>
     <div class="container" v-if="selectedTab == 0">
-        <form  action="/users" method="post">
+        {{!-- <form  action="/users" method="post">
             <div class="form-group">
                 <label for="rank">Rank:</label>
                 <select v-model="optionRank" class="form-control" id="rank" name="rank">
@@ -45,7 +45,7 @@
             <div class="form-group" >
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </div>
-        </form>
+        </form> --}}
     </div>
 </div>
 <script>

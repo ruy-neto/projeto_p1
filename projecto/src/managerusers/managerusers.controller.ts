@@ -15,9 +15,7 @@ export class ManagerusersController {
     ) {
         try {
             const listParents = await this.managerService.listParents();
-            console.log("Passei aqui");
-            // const renderedPage = await this.nestRenderService.render('managerusers', { listParents: listParents[0] });
-            // res.send(renderedPage); // Renderiza a página diretamente
+            console.log("Passei aqui Lista:",listParents[0]);
 
             return MenuModel.makeAdmin(1,{listParents:listParents[0]});
         } catch (error) {
@@ -26,11 +24,16 @@ export class ManagerusersController {
     }
 
     @Post()
-    create(
+    async create(
         @Res() res: Response,
         @Session() session: Record<string, any>,
         @Body() body: any
         ) {
-            console.log("Corpo recebido",body);
+            try {
+                await this.managerService.addUser(body);
+                res.redirect("home");
+            } catch (error) {
+                return `Error ${error}`;
+            }
     }
 }

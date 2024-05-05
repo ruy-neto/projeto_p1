@@ -10,6 +10,7 @@ import { HomeController } from './home/home.controller';
 import { SessionModule } from 'nestjs-session';
 import { ManagerusersController } from './managerusers/managerusers.controller';
 import { ManagerService } from './managerusers/manager/manager.service';
+import { RegistrateController } from './registrate/registrate.controller';
 
 @Module({
   imports: [CadastrarModule,
@@ -32,7 +33,7 @@ import { ManagerService } from './managerusers/manager/manager.service';
       },
     })
   ],
-  controllers: [AppController, HomeController, ManagerusersController],
+  controllers: [AppController, HomeController, ManagerusersController, RegistrateController],
   providers: [AppService,MysqlService,DatabaseConfig, ManagerService],
 })
 export class AppModule {}

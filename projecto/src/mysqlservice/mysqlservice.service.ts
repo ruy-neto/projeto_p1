@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as mysql from 'mysql2/promise';
 import { DatabaseConfig } from 'src/databaseconfig/database.config';
-
+import * as bcrypt from 'bcrypt';
 @Injectable()
 export class MysqlService {
     private pool: mysql.Pool;
@@ -49,9 +49,29 @@ export class MysqlService {
     async callListParents(): Promise<any> {
       const connection = await this.pool.getConnection();
       try {
-        return connection.query(`select id,nome from USER wheren rank = 2`);
+        return connection.query(`select id,name from USER where rank = 2`);
       } finally {
         connection.release();
       }
+    }
+
+    async callAddUser(user:any): Promise<any> {
+      const connection = await this.pool.getConnection();
+      try {
+        const password = await this.hashPassword(user.senha);
+        const query = `insert into USER(user,password,name,phone,qrcode,rank,parent) values("${user.usuario}","${password}","${user.nome}","${user.telefone}",null,${user.rank},${user.responsavel == undefined ? null:`${user.responsavel}`})`;
+        return connection.query(query);
+      } 
+      catch(e) {
+        throw e;
+      }
+      finally {
+        connection.release();
+      }
+    }
+
+    async hashPassword(password: string): Promise<string> {
+      const saltRounds = 10;
+      return bcrypt.hash(password, saltRounds);
     }
 }

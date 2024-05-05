@@ -16,7 +16,24 @@ export class HomeController {
         @Session() session: Record<string, any>
     ){
         const sess = (session as ISession);
-        const body = this.jwtService.decode(session.token);
-        return MenuModel.makeAdmin(0,null);
+        const bodySessionBody = this.jwtService.decode(session.token);
+        console.log("Entrei aqui.");
+        switch (bodySessionBody.rank) {
+            case 0:
+                console.log("It is a Sunday.");
+                break;
+            case 1:
+                console.log("It is a Monday.");
+                break;
+            case 2:
+                console.log("It is a Tuesday.");
+                break;
+            case 3:
+                console.log("Sou guarda.");
+                return MenuModel.makeGuard(0,null);
+                break;
+            case 4:
+                return MenuModel.makeAdmin(0,null);
+        }
     }
 }

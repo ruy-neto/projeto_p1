@@ -36,10 +36,6 @@ export class AppController {
   }
 }
 
-// interface ISession extends Session {
-//   token?: string;
-// };
-
 interface LoginBody {
   user: string;
   password: string;
