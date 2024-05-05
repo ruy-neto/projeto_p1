@@ -59,7 +59,9 @@ export class MysqlService {
       const connection = await this.pool.getConnection();
       try {
         const password = await this.hashPassword(user.senha);
-        const query = `insert into USER(user,password,name,phone,qrcode,rank,parent) values("${user.usuario}","${password}","${user.nome}","${user.telefone}",null,${user.rank},${user.responsavel == undefined ? null:`${user.responsavel}`})`;
+        const qrcode = user.rank == 1 ? Math.floor(Date.now() / 1000) : null;
+        const parent = user.rank == 1 ? user.parent : null;
+        const query = `insert into USER(user,password,name,phone,qrcode,rank,parent) values("${user.usuario}","${password}","${user.nome}","${user.telefone}",${qrcode},${user.rank},${parent})`;
         return connection.query(query);
       } 
       catch(e) {
@@ -68,6 +70,13 @@ export class MysqlService {
       finally {
         connection.release();
       }
+    }
+
+    async callQRCodeChecker(qrcode: string) : Promise<any>  {
+      const connection = await this.pool.getConnection();
+      const query = `select alunotable.name as studentname, parent.name as parentname from USER alunotable inner join USER parent on parent.id = alunotable.parent where alunotable.qrcode = ${qrcode}`;
+      console.log(query);
+      return connection.query(query);
     }
 
     async hashPassword(password: string): Promise<string> {

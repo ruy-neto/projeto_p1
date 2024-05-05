@@ -32,7 +32,7 @@
             </div>
             <div v-if="optionRank == 1" class="form-group" >
                 <label for="responsavel">Responsável:</label>
-                <select v-model="responsavel" class="form-control" id="rank" name="rank">
+                <select v-model="responsavel" class="form-control" id="rank" name="parent">
                     {{#each pageInfo.listParents}}
                     <option value="{{this.id}}">{{this.name}}</option>
                     {{/each}}

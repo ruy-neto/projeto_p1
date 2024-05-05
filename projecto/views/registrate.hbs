@@ -1,76 +1,74 @@
 {{> header}}
 <div id="app">
-<ul class="nav nav-tabs">
-  <li :class="[standard ,{active: showCreate()} ]">
-    <a class="nav-link"  aria-current="page"  @click="updateTab(0)">Registrar ponto</a>
-  </li>
-  <li :class="[standard, {active: showList()} ]">
-    <a class="nav-link"  @click="updateTab(1)">Ver registros</a>
-</ul>
-    <div class="container" v-if="selectedTab == 0">
-        {{!-- <form  action="/users" method="post">
-            <div class="form-group">
-                <label for="rank">Rank:</label>
-                <select v-model="optionRank" class="form-control" id="rank" name="rank">
-                    <option value="1">Aluno</option>
-                    <option value="2">Responsável</option>
-                    <option value="3">Guarda</option>
-                    <option value="4">Administrador</option>
-                </select>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                <video ref="video" class="w-50 h-auto"  autoplay></video>
+                <canvas ref="canvas"  class="w-100 h-auto" style="display: none;"></canvas>
             </div>
-            <div class="form-group">
-                <label for="usuario">Usuário:</label>
-                <input type="text" class="form-control" id="usuario" name="usuario">
-            </div>
-            <div class="form-group">
-                <label for="senha">Senha:</label>
-                <input type="password" class="form-control" id="senha" name="senha">
-            </div>
-            <div class="form-group">
-                <label for="nome">Nome:</label>
-                <input type="text" class="form-control" id="nome" name="nome">
-            </div>
-            <div v-if="optionRank == 1" class="form-group" >
-                <label for="responsavel">Responsável:</label>
-                <select v-model="responsavel" class="form-control" id="rank" name="rank">
-                    {{#each pageInfo.listParents}}
-                    <option value="{{this.id}}">{{this.name}}</option>
-                    {{/each}}
-                </select>
-            </div>
-            <div class="form-group" >
-                <label for="telefone">Telefone:</label>
-                <input type="text" class="form-control" id="telefone" name="telefone">
-            </div>
-            <div class="form-group" >
-                <button type="submit" class="btn btn-primary">Enviar</button>
-            </div>
-        </form> --}}
+        </div>
     </div>
+
 </div>
+
 <script>
     const app = Vue.createApp({
         data() {
             return {
                 message: 'Olá, Vue.js!',
                 optionRank:1,
-                selectedTab:0,
                 active: 'active',
-                standard:'nav-item'
+                standard:'nav-item',
+                qrCodeResult: ''
             }
         },
-  methods: {
-    updateTab(newValue) {
-      // Atualiza o valor da variável com o valor passado como argumento
-      this.selectedTab = newValue;
-    },
-    showList(){
-        return this.optionRank == 1;
-    },
-    showCreate() {
-        return this.optionRank == 0;
-    }
-  }
+        mounted() {
+            const video = this.$refs.video;
+            const canvas = this.$refs.canvas;
+            const context = canvas.getContext('2d');
+
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+            .then((stream) => {
+                video.srcObject = stream;
+                video.play();
+                this.tick(); // Inicia o processamento do QR code
+            })
+            .catch((error) => {
+                console.error('Erro ao acessar a câmera:', error);
+            });
+        },
+        methods: {
+            tick() {
+                const video = this.$refs.video;
+                const canvas = this.$refs.canvas;
+                const context = canvas.getContext('2d');
+                console.log("Chamei função tick");
+                if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+                    const code = jsQR(imageData.data, imageData.width, imageData.height); // Processa o QR code
+                    if (code) {
+                        this.qrCodeResult = code.data; // Atualiza o resultado do QR code
+                        console.log(this.qrCodeResult);
+                    } else{
+
+                    }
+                }
+                requestAnimationFrame(() => this.tick()); // Chama a função tick() novamente no próximo quadro de vídeo
+            },
+            updateTab(newValue) {
+            // Atualiza o valor da variável com o valor passado como argumento
+                this.selectedTab = newValue;
+            },
+            showList(){
+                return this.optionRank == 1;
+            },
+            showCreate() {
+                return this.optionRank == 0;
+            }
+        }
     });
 
     app.mount('#app');

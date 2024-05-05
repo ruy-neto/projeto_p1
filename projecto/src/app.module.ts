@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CadastrarModule } from './cadastrar/cadastrar.module';
@@ -11,9 +11,15 @@ import { SessionModule } from 'nestjs-session';
 import { ManagerusersController } from './managerusers/managerusers.controller';
 import { ManagerService } from './managerusers/manager/manager.service';
 import { RegistrateController } from './registrate/registrate.controller';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+import { QrcodeController } from './qrcode/qrcode.controller';
 
 @Module({
   imports: [CadastrarModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'node_modules'),
+    }),
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,
@@ -33,7 +39,7 @@ import { RegistrateController } from './registrate/registrate.controller';
       },
     })
   ],
-  controllers: [AppController, HomeController, ManagerusersController, RegistrateController],
+  controllers: [AppController, HomeController, ManagerusersController, RegistrateController, QrcodeController],
   providers: [AppService,MysqlService,DatabaseConfig, ManagerService],
 })
 export class AppModule {}

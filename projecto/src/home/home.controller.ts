@@ -17,7 +17,6 @@ export class HomeController {
     ){
         const sess = (session as ISession);
         const bodySessionBody = this.jwtService.decode(session.token);
-        console.log("Entrei aqui.");
         switch (bodySessionBody.rank) {
             case 0:
                 console.log("It is a Sunday.");
