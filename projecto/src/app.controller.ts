@@ -26,7 +26,7 @@ export class AppController {
     } else {
       const elementPassword = element[0][0].password;
       if (await bcrypt.compare( body.password,elementPassword)) {
-        const token = this.jwtService.sign({ user: element[0][0].user, rank: element[0][0].rank });
+        const token = this.jwtService.sign({ id:element[0][0].id,user: element[0][0].user, rank: element[0][0].rank });
         session.token = token;
         return res.redirect('/home')
       } else {

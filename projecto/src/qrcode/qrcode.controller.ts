@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Render, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { MysqlService } from 'src/mysqlservice/mysqlservice.service';
 import { Response } from 'express';
@@ -7,28 +7,43 @@ import { Response } from 'express';
 @UseGuards(AuthGuard)
 export class QrcodeController {
     constructor(private readonly mysqlService: MysqlService) {}
-    @Get(':qrcode')
+    @Get(':code')
     async root(
         @Res() res: Response,
-        @Param('qrcode') qrcode: string
+        @Param() params: any
     ){
         try {
-            const queryresult = await this.mysqlService.callQRCodeChecker(qrcode);
-            console.log(queryresult);
+            console.log("O que eu recebi aqui:",params.code);
+            const queryresult = await this.mysqlService.callQRCodeChecker(params.code);
             const array = queryresult[0] as any[];
             if (array.length == 0) {
-                return res.status(404).send("QRCODE INVALIDO");
+
+                res.status(404).send("QRCODE INVALIDO");
             } else {
-                return new StudentResponse(array.at(0).studentname,array.at(0).parentname);
+                res.status(200).send(new StudentResponse(array.at(0).studentid,array.at(0).studentname,array.at(0).parentname));
             }
         } catch (error) {
             return "Problema envolvendo banco"
+        }
+    }
+
+    @Post()
+    async register(
+        @Res() res: Response,
+        @Body() body: any
+        ){
+        try {
+            const queryresult = await this.mysqlService.callQRCODERegister(body.id_guard,body.id_student,body.ischeckin);
+            res.status(200).send();
+        } catch (error) {
+            res.status(403).send();
         }
     }
 }
 
 class StudentResponse {
     constructor(
+        public studentId: number,
         public studentName: String,
         public parentName: String
         ){}

@@ -1,4 +1,5 @@
 {{> header}}
+
 <div id="app">
     <div class="container-fluid">
         <div class="row">
@@ -9,6 +10,30 @@
         </div>
     </div>
 
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" v-if="showModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Informações do Estudante</h5>
+        {{!-- <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> --}}
+      </div>
+      <div class="modal-body">
+        <p>Nome do Estudante:</p>
+        <p v-text="studentName"></p>
+        <p>Nome do Responsavel:</p>
+        <p v-text="parentName"></p>
+      </div>
+      <div class="modal-footer d-flex flex-column">
+        <button type="button" class="btn btn-primary w-100 mb-2" @click="registerCheckIN()">Registrar Check-In</button>
+        <button type="button" class="btn btn-primary w-100" @click="registerCheckout()">Registrar Checkout</button>
+        <button type="button" class="btn btn-secondary w-100 mb-2" data-dismiss="modal" @click="killTheModal()">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 <script>
@@ -19,7 +44,12 @@
                 optionRank:1,
                 active: 'active',
                 standard:'nav-item',
-                qrCodeResult: ''
+                calledModal:false,
+                studentName:"",
+                parentName:"",
+                studentid:"",
+                guardid:{{pageInfo.guardid}},
+                showModal:false
             }
         },
         mounted() {
@@ -31,29 +61,66 @@
             .then((stream) => {
                 video.srcObject = stream;
                 video.play();
-                this.tick(); // Inicia o processamento do QR code
+                this.tick(); 
             })
             .catch((error) => {
                 console.error('Erro ao acessar a câmera:', error);
             });
         },
         methods: {
+            registerCheckIN(){
+
+
+        const params = {"id_student":this.studentid,
+                        "id_guard": this.guardid,
+                        "ischeckin": 1};
+
+        const jsonString = JSON.stringify(params);
+                axios.post("/qrcode",params).then(resposta => {
+                    this.killTheModal();
+                    this.showModal = false;
+                    console.log('Resposta:', resposta.data);
+                    window.location.href = "registrate/success";
+                })
+                .catch(erro => {
+                    console.error('Erro:', erro);
+                });
+            },
+            registerCheckout(){
+                this.killTheModal()
+            },
+            killTheModal(){
+                window.location.reload();
+            },
             tick() {
                 const video = this.$refs.video;
                 const canvas = this.$refs.canvas;
                 const context = canvas.getContext('2d');
-                console.log("Chamei função tick");
                 if (video.readyState === video.HAVE_ENOUGH_DATA) {
                     canvas.width = video.videoWidth;
                     canvas.height = video.videoHeight;
                     context.drawImage(video, 0, 0, canvas.width, canvas.height);
                     const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-                    const code = jsQR(imageData.data, imageData.width, imageData.height); // Processa o QR code
-                    if (code) {
-                        this.qrCodeResult = code.data; // Atualiza o resultado do QR code
-                        console.log(this.qrCodeResult);
-                    } else{
-
+                    const code = jsQR(imageData.data, imageData.width, imageData.height); 
+                    
+                    if (!this.calledModal) {
+                        if (code != null) {
+                            this.qrcode = code;
+                            const url = "/qrcode/"+code.data;
+                            this.calledModal = true;
+                            axios.get(url).then(response => {
+                                this.showModal = true;
+                                this.studentName = response.data.studentName;
+                                this.parentName = response.data.parentName;
+                                this.studentid = response.data.studentId;
+                                var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+                                myModal.show();
+                                
+                            })
+                            .catch(error => {
+                                this.calledModal = false;
+                            });
+                        }           
                     }
                 }
                 requestAnimationFrame(() => this.tick()); // Chama a função tick() novamente no próximo quadro de vídeo

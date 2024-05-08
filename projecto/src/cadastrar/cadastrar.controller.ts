@@ -6,8 +6,6 @@ export class CadastrarController {
     constructor(private readonly cadastrarADMService: CadastrarAdmService) {}
     @Post()
     async cadastrar(@Body() body: Body): Promise<any> {
-        console.log('Corpo da solicitação:', body);
-
         if (body.user === '' || body.password === '') {
             return 'Algum campo está vazío';
         }

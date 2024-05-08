@@ -74,13 +74,24 @@ export class MysqlService {
 
     async callQRCodeChecker(qrcode: string) : Promise<any>  {
       const connection = await this.pool.getConnection();
-      const query = `select alunotable.name as studentname, parent.name as parentname from USER alunotable inner join USER parent on parent.id = alunotable.parent where alunotable.qrcode = ${qrcode}`;
-      console.log(query);
+      const query = `select alunotable.id as studentid,alunotable.name as studentname, parent.name as parentname from USER alunotable inner join USER parent on parent.id = alunotable.parent where alunotable.qrcode = ${qrcode}`;
       return connection.query(query);
     }
 
     async hashPassword(password: string): Promise<string> {
       const saltRounds = 10;
       return bcrypt.hash(password, saltRounds);
+    }
+
+    async callQRCODERegister(id_guard:number,id_student:number,ischeckin:number): Promise<any>  {
+      const connection = await this.pool.getConnection();
+      const dataHoraAtual = new Date();
+      // Obtém a data e hora atual no formato ISO 8601
+      const isoString = dataHoraAtual.toISOString();
+
+      // Remove os milissegundos da string ISO 86
+      const query = `insert into record(id_guard,id_student,time,ischeckin) values(${id_guard},${id_student},"${isoString}",${ischeckin})`;
+      console.log(query);
+      return connection.query(query);
     }
 }

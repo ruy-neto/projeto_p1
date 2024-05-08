@@ -16,7 +16,7 @@ import { join } from 'path';
 import { QrcodeController } from './qrcode/qrcode.controller';
 
 @Module({
-  imports: [CadastrarModule,
+  imports: [CadastrarModule,  
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'node_modules'),
     }),

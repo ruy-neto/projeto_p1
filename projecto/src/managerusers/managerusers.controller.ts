@@ -15,7 +15,6 @@ export class ManagerusersController {
     ) {
         try {
             const listParents = await this.managerService.listParents();
-            console.log("Passei aqui Lista:",listParents[0]);
 
             return MenuModel.makeAdmin(1,{listParents:listParents[0]});
         } catch (error) {
