@@ -14,7 +14,7 @@ async function bootstrap() {
         defaultLayout: 'layout',
         layoutsDir: (0, path_1.join)(__dirname, '..', 'views', 'layouts')
     }));
-    await app.listen(3000);
+    await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map
