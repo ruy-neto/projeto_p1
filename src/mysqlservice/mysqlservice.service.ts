@@ -55,6 +55,15 @@ export class MysqlService {
       }
     }
 
+    async getGuardRegistriesList(id: number): Promise<any> {
+      const connection = await this.pool.getConnection();
+      try {
+        return connection.query(`select studenttable.id,studenttable.name as studentName, time,ischeckin from record inner join USER as studenttable where studenttable.id = record.id_student and record.id_guard = ${id}`);
+      } finally {
+        connection.release();
+      }
+    }
+
     async callAddUser(user:any): Promise<any> {
       const connection = await this.pool.getConnection();
       try {

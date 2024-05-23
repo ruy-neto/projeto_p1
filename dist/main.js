@@ -12,7 +12,12 @@ async function bootstrap() {
     app.engine('hbs', (0, express_handlebars_1.engine)({
         extname: '.hbs',
         defaultLayout: 'layout',
-        layoutsDir: (0, path_1.join)(__dirname, '..', 'views', 'layouts')
+        layoutsDir: (0, path_1.join)(__dirname, '..', 'views', 'layouts'),
+        helpers: {
+            json: function (context) {
+                return JSON.stringify(context);
+            }
+        }
     }));
     await app.listen(process.env.PORT || 3000);
 }

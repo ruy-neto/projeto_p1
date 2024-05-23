@@ -14,6 +14,8 @@ import { RegistrateController } from './registrate/registrate.controller';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { QrcodeController } from './qrcode/qrcode.controller';
+import { RegistryController } from './registry/registry.controller';
+import { RegistryService } from './registry/registry/registry.service';
 
 @Module({
   imports: [CadastrarModule,  
@@ -39,7 +41,7 @@ import { QrcodeController } from './qrcode/qrcode.controller';
       },
     })
   ],
-  controllers: [AppController, HomeController, ManagerusersController, RegistrateController, QrcodeController],
-  providers: [AppService,MysqlService,DatabaseConfig, ManagerService],
+  controllers: [AppController, HomeController, ManagerusersController, RegistrateController, QrcodeController, RegistryController],
+  providers: [AppService,MysqlService,DatabaseConfig, ManagerService,RegistryService],
 })
 export class AppModule {}

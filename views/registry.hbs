@@ -1,0 +1,44 @@
+{{> header}}
+<div id="app">
+    <ul class="list-group">       
+     <li class="list-group-item" v-for="element in registries" :key="element.id" >
+        <p>
+            <a>Aluno: <a>
+            <a v-text="element.studentName"></a>
+        </p>
+
+        <p>
+            <a>O aluno fez: <a>
+            <a v-text="element.ischeckin == 1 ? 'Check-in' : 'Checkout'"></a> às:
+        </p>
+
+        <p>
+            <a v-text="element.time"></a>
+        </p>
+     </li>
+    </ul>
+</div>
+
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                registries: {{{json pageInfo.registries}}}
+            }
+        },
+  methods: {
+    updateTab(newValue) {
+      // Atualiza o valor da variável com o valor passado como argumento
+      this.selectedTab = newValue;
+    },
+    showList(){
+        return this.optionRank == 1;
+    },
+    showCreate() {
+        return this.optionRank == 0;
+    }
+  }
+    });
+
+    app.mount('#app');
+</script>

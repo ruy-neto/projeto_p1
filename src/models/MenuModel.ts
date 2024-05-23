@@ -14,7 +14,8 @@ export class MenuModel {
     static makeGuard(selectedIndex: number, pageInfo:any){
         const lista = [
             {titulo:"Inicio",link:"/home"},
-            {titulo:"Registrar",link:"/registrate"}
+            {titulo:"Registrar",link:"/registrate"},
+            {titulo:"Registros",link:"/registry"}
         ];
 
         const sections = lista.map((element, index)=>{return new SectionModel(element.titulo, index == selectedIndex,element.link)});

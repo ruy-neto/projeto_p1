@@ -23,6 +23,8 @@ const registrate_controller_1 = require("./registrate/registrate.controller");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
 const qrcode_controller_1 = require("./qrcode/qrcode.controller");
+const registry_controller_1 = require("./registry/registry.controller");
+const registry_service_1 = require("./registry/registry/registry.service");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -51,8 +53,8 @@ exports.AppModule = AppModule = __decorate([
                 },
             })
         ],
-        controllers: [app_controller_1.AppController, home_controller_1.HomeController, managerusers_controller_1.ManagerusersController, registrate_controller_1.RegistrateController, qrcode_controller_1.QrcodeController],
-        providers: [app_service_1.AppService, mysqlservice_service_1.MysqlService, database_config_1.DatabaseConfig, manager_service_1.ManagerService],
+        controllers: [app_controller_1.AppController, home_controller_1.HomeController, managerusers_controller_1.ManagerusersController, registrate_controller_1.RegistrateController, qrcode_controller_1.QrcodeController, registry_controller_1.RegistryController],
+        providers: [app_service_1.AppService, mysqlservice_service_1.MysqlService, database_config_1.DatabaseConfig, manager_service_1.ManagerService, registry_service_1.RegistryService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

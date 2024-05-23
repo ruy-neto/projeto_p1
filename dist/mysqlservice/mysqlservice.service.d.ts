@@ -7,6 +7,7 @@ export declare class MysqlService {
     callCadastrarAdmin(procedureName: string, parameters: any[]): Promise<any>;
     callLogin(user: string): Promise<any>;
     callListParents(): Promise<any>;
+    getGuardRegistriesList(id: number): Promise<any>;
     callAddUser(user: any): Promise<any>;
     callQRCodeChecker(qrcode: string): Promise<any>;
     hashPassword(password: string): Promise<string>;

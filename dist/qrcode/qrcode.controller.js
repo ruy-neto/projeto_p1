@@ -16,13 +16,14 @@ exports.QrcodeController = void 0;
 const common_1 = require("@nestjs/common");
 const auth_guard_1 = require("../auth/auth.guard");
 const mysqlservice_service_1 = require("../mysqlservice/mysqlservice.service");
+const jwt_1 = require("@nestjs/jwt");
 let QrcodeController = class QrcodeController {
-    constructor(mysqlService) {
+    constructor(mysqlService, jwtService) {
         this.mysqlService = mysqlService;
+        this.jwtService = jwtService;
     }
     async root(res, params) {
         try {
-            console.log("O que eu recebi aqui:", params.code);
             const queryresult = await this.mysqlService.callQRCodeChecker(params.code);
             const array = queryresult[0];
             if (array.length == 0) {
@@ -36,8 +37,11 @@ let QrcodeController = class QrcodeController {
             return "Problema envolvendo banco";
         }
     }
-    async register(res, body) {
+    async register(res, session, body) {
         try {
+            const sessionData = session.token;
+            const token = this.jwtService.decode(sessionData);
+            console.log("O que eu recebi aqui para salvar o registro do qrcode", token);
             const queryresult = await this.mysqlService.callQRCODERegister(body.id_guard, body.id_student, body.ischeckin);
             res.status(200).send();
         }
@@ -58,15 +62,17 @@ __decorate([
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Res)()),
-    __param(1, (0, common_1.Body)()),
+    __param(1, (0, common_1.Session)()),
+    __param(2, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", [Object, Object, Object]),
     __metadata("design:returntype", Promise)
 ], QrcodeController.prototype, "register", null);
 exports.QrcodeController = QrcodeController = __decorate([
     (0, common_1.Controller)('qrcode'),
     (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
-    __metadata("design:paramtypes", [mysqlservice_service_1.MysqlService])
+    __metadata("design:paramtypes", [mysqlservice_service_1.MysqlService,
+        jwt_1.JwtService])
 ], QrcodeController);
 class StudentResponse {
     constructor(studentId, studentName, parentName) {

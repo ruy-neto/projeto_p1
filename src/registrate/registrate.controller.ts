@@ -16,7 +16,7 @@ export class RegistrateController {
         const sess = (session as ISession);
         const bodySession = this.jwtService.decode(session.token);
         console.log("Corpo da sessão:",bodySession);
-        return MenuModel.makeGuard(1,{guardid:4});
+        return MenuModel.makeGuard(1,{guardid:bodySession.id});
     }
 
     @Get("success")

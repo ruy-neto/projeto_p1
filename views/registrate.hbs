@@ -16,9 +16,6 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Informações do Estudante</h5>
-        {{!-- <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button> --}}
       </div>
       <div class="modal-body">
         <p>Nome do Estudante:</p>
@@ -69,13 +66,9 @@
         },
         methods: {
             registerCheckIN(){
-
-
-        const params = {"id_student":this.studentid,
+                const params = {"id_student":this.studentid,
                         "id_guard": this.guardid,
                         "ischeckin": 1};
-
-        const jsonString = JSON.stringify(params);
                 axios.post("/qrcode",params).then(resposta => {
                     this.killTheModal();
                     this.showModal = false;
@@ -87,7 +80,18 @@
                 });
             },
             registerCheckout(){
-                this.killTheModal()
+                const params = {"id_student":this.studentid,
+                        "id_guard": this.guardid,
+                        "ischeckin": 0};
+                axios.post("/qrcode",params).then(resposta => {
+                    this.killTheModal();
+                    this.showModal = false;
+                    console.log('Resposta:', resposta.data);
+                    window.location.href = "registrate/success";
+                })
+                .catch(erro => {
+                    console.error('Erro:', erro);
+                });
             },
             killTheModal(){
                 window.location.reload();
