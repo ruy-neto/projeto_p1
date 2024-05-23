@@ -23,6 +23,16 @@ export class MenuModel {
         return new MenuModel(lista[selectedIndex].titulo,sections,pageInfo);
     }
 
+    static makeParent(selectedIndex: number, pageInfo:any){
+        const lista = [
+            {titulo:"Inicio",link:"/home"},
+            {titulo:"Registros",link:"/registry"}
+        ];
+
+        const sections = lista.map((element, index)=>{return new SectionModel(element.titulo, index == selectedIndex,element.link)});
+
+        return new MenuModel(lista[selectedIndex].titulo,sections,pageInfo);
+    }
 }
 
 class SectionModel {

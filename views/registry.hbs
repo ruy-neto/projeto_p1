@@ -3,10 +3,13 @@
     <ul class="list-group">       
      <li class="list-group-item" v-for="element in registries" :key="element.id" >
         <p>
-            <a>Aluno: <a>
+            <a>Aluno(a): <a>
             <a v-text="element.studentName"></a>
         </p>
-
+        <p v-if="element.guardname !== undefined">
+            <a>Guarda: </a>
+            <a v-text="element.guardname"></a>
+        </p>
         <p>
             <a>O aluno fez: <a>
             <a v-text="element.ischeckin == 1 ? 'Check-in' : 'Checkout'"></a> às:

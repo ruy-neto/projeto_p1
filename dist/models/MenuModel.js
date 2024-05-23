@@ -24,6 +24,14 @@ class MenuModel {
         const sections = lista.map((element, index) => { return new SectionModel(element.titulo, index == selectedIndex, element.link); });
         return new MenuModel(lista[selectedIndex].titulo, sections, pageInfo);
     }
+    static makeParent(selectedIndex, pageInfo) {
+        const lista = [
+            { titulo: "Inicio", link: "/home" },
+            { titulo: "Registros", link: "/registry" }
+        ];
+        const sections = lista.map((element, index) => { return new SectionModel(element.titulo, index == selectedIndex, element.link); });
+        return new MenuModel(lista[selectedIndex].titulo, sections, pageInfo);
+    }
 }
 exports.MenuModel = MenuModel;
 class SectionModel {

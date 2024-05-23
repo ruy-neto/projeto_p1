@@ -25,10 +25,33 @@ export class RegistryController {
         const bodySessionBody = this.jwtService.decode(session.token);
         switch (bodySessionBody.rank) {
             default:
-                return res.redirect('/home');
+                return res.redirect('/');
             case 2:
-                console.log("It is a Tuesday.");
-                break;
+                const idparent = bodySessionBody.id;
+                const tupleparent = await this.registryService.getParentRegistriesList(idparent);
+                const listParent = tupleparent[0];
+
+                const treatedListParent = listParent.map(element => {
+                    var data = new Date(element.time);
+
+                    var hora = data.getUTCHours();
+                    var minuto = data.getUTCMinutes();
+                    var dia = data.getUTCDate();
+                    var mes = data.getUTCMonth() + 1; 
+                    var ano = data.getUTCFullYear();
+
+                    var dataFormatada = hora + ":" + minuto + " do dia " + dia + "/" + mes + "/" + ano;
+
+                    element.time = dataFormatada;
+
+                    return element
+                });
+
+                const rootParent =  {
+                    registries: treatedListParent
+                }
+
+                return MenuModel.makeParent(1,rootParent);
             case 3:
                 const id = bodySessionBody.id
                 const tuple = await this.registryService.getGuardRegistriesList(id);

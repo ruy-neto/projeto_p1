@@ -5,6 +5,7 @@ export declare class MenuModel {
     constructor(title: string, sections: SectionModel[], pageInfo: any);
     static makeAdmin(selectedIndex: number, pageInfo: any): MenuModel;
     static makeGuard(selectedIndex: number, pageInfo: any): MenuModel;
+    static makeParent(selectedIndex: number, pageInfo: any): MenuModel;
 }
 declare class SectionModel {
     titleLink: string;

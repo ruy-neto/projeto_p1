@@ -73,6 +73,15 @@ let MysqlService = class MysqlService {
             connection.release();
         }
     }
+    async getParentRegistriesList(id) {
+        const connection = await this.pool.getConnection();
+        try {
+            return connection.query(`select studenttable.id as studentid,studenttable.name as studentName, time,ischeckin,guardtable.name as guardname, parenttable.id as parentid from record inner join USER as studenttable inner join USER as parenttable inner join USER as guardtable where studenttable.id = record.id_student and parenttable.id = studenttable.parent and record.id_guard = guardtable.id and parenttable.id = ${id}`);
+        }
+        finally {
+            connection.release();
+        }
+    }
     async callAddUser(user) {
         const connection = await this.pool.getConnection();
         try {

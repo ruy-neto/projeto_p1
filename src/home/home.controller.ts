@@ -13,24 +13,18 @@ export class HomeController {
     @Get()
     @Render('home')
     root(
+        @Res() res: Response,
         @Session() session: Record<string, any>
     ){
         const sess = (session as ISession);
         const bodySessionBody = this.jwtService.decode(session.token);
         switch (bodySessionBody.rank) {
-            case 0:
-                console.log("It is a Sunday.");
-                break;
-            case 1:
-                console.log("It is a Monday.");
-                break;
+            default:
+                return res.redirect('/');
             case 2:
-                console.log("It is a Tuesday.");
-                break;
+                return MenuModel.makeParent(0,null);
             case 3:
-                console.log("Sou guarda.");
                 return MenuModel.makeGuard(0,null);
-                break;
             case 4:
                 return MenuModel.makeAdmin(0,null);
         }

@@ -21,23 +21,16 @@ let HomeController = class HomeController {
     constructor(jwtService) {
         this.jwtService = jwtService;
     }
-    root(session) {
+    root(res, session) {
         const sess = session;
         const bodySessionBody = this.jwtService.decode(session.token);
         switch (bodySessionBody.rank) {
-            case 0:
-                console.log("It is a Sunday.");
-                break;
-            case 1:
-                console.log("It is a Monday.");
-                break;
+            default:
+                return res.redirect('/');
             case 2:
-                console.log("It is a Tuesday.");
-                break;
+                return MenuModel_1.MenuModel.makeParent(0, null);
             case 3:
-                console.log("Sou guarda.");
                 return MenuModel_1.MenuModel.makeGuard(0, null);
-                break;
             case 4:
                 return MenuModel_1.MenuModel.makeAdmin(0, null);
         }
@@ -47,9 +40,10 @@ exports.HomeController = HomeController;
 __decorate([
     (0, common_1.Get)(),
     (0, common_1.Render)('home'),
-    __param(0, (0, common_1.Session)()),
+    __param(0, (0, common_1.Res)()),
+    __param(1, (0, common_1.Session)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", void 0)
 ], HomeController.prototype, "root", null);
 exports.HomeController = HomeController = __decorate([

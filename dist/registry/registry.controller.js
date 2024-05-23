@@ -23,14 +23,31 @@ let RegistryController = class RegistryController {
         this.jwtService = jwtService;
         this.registryService = registryService;
     }
-    async root(session) {
+    async root(res, session) {
         const sess = session;
         const bodySessionBody = this.jwtService.decode(session.token);
         switch (bodySessionBody.rank) {
             default:
+                return res.redirect('/');
             case 2:
-                console.log("It is a Tuesday.");
-                break;
+                const idparent = bodySessionBody.id;
+                const tupleparent = await this.registryService.getParentRegistriesList(idparent);
+                const listParent = tupleparent[0];
+                const treatedListParent = listParent.map(element => {
+                    var data = new Date(element.time);
+                    var hora = data.getUTCHours();
+                    var minuto = data.getUTCMinutes();
+                    var dia = data.getUTCDate();
+                    var mes = data.getUTCMonth() + 1;
+                    var ano = data.getUTCFullYear();
+                    var dataFormatada = hora + ":" + minuto + " do dia " + dia + "/" + mes + "/" + ano;
+                    element.time = dataFormatada;
+                    return element;
+                });
+                const rootParent = {
+                    registries: treatedListParent
+                };
+                return MenuModel_1.MenuModel.makeParent(1, rootParent);
             case 3:
                 const id = bodySessionBody.id;
                 const tuple = await this.registryService.getGuardRegistriesList(id);
@@ -50,9 +67,7 @@ let RegistryController = class RegistryController {
                 const root = {
                     registries: treatedList
                 };
-                return MenuModel_1.MenuModel.makeGuard(0, root);
-            case 4:
-                return MenuModel_1.MenuModel.makeAdmin(0, null);
+                return MenuModel_1.MenuModel.makeGuard(2, root);
         }
     }
 };
@@ -60,9 +75,10 @@ exports.RegistryController = RegistryController;
 __decorate([
     (0, common_1.Get)(),
     (0, common_1.Render)('registry'),
-    __param(0, (0, common_1.Session)()),
+    __param(0, (0, common_1.Res)()),
+    __param(1, (0, common_1.Session)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], RegistryController.prototype, "root", null);
 exports.RegistryController = RegistryController = __decorate([

@@ -9,4 +9,8 @@ export class RegistryService {
     async getGuardRegistriesList(id: number): Promise<[any]> {
         return this.mysqlService.getGuardRegistriesList(id);
     }
+
+    async getParentRegistriesList(id: number): Promise<[any]> {
+        return this.mysqlService.getParentRegistriesList(id);
+    }
 }

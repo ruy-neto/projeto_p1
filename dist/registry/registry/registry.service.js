@@ -19,6 +19,9 @@ let RegistryService = class RegistryService {
     async getGuardRegistriesList(id) {
         return this.mysqlService.getGuardRegistriesList(id);
     }
+    async getParentRegistriesList(id) {
+        return this.mysqlService.getParentRegistriesList(id);
+    }
 };
 exports.RegistryService = RegistryService;
 exports.RegistryService = RegistryService = __decorate([
