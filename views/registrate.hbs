@@ -4,8 +4,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col d-flex justify-content-center">
-                <video ref="video" class="w-50 h-auto"  autoplay></video>
-                <canvas ref="canvas"  class="w-100 h-auto" style="display: none;"></canvas>
+                    <video ref="video" class="w-50 h-auto" autoplay playsinline muted></video>
+                    <canvas ref="canvas" class="w-100 h-auto" style="display: none;"></canvas>
             </div>
         </div>
     </div>
@@ -62,6 +62,7 @@
             })
             .catch((error) => {
                 console.error('Erro ao acessar a câmera:', error);
+                alert('Error accessing media devices: ' + error.message);
             });
         },
         methods: {
