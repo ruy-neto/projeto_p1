@@ -10,9 +10,9 @@ exports.DatabaseConfig = void 0;
 const common_1 = require("@nestjs/common");
 let DatabaseConfig = class DatabaseConfig {
     constructor() {
-        this.host = 'mysql.projetop1tag.kinghost.net';
+        this.host = 'mysql48-farm1.kinghost.net';
         this.user = 'projetop1tag';
-        this.password = 'qHDKj0bHNor3LrB';
+        this.password = 'wydtekPozhic1';
         this.database = 'projetop1tag';
     }
 };
