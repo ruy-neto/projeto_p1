@@ -15,7 +15,8 @@ export class MenuModel {
         const lista = [
             {titulo:"Inicio",link:"/home"},
             {titulo:"Registrar",link:"/registrate"},
-            {titulo:"Registros",link:"/registry"}
+            {titulo:"Registros",link:"/registry"},
+            {titulo:"Ocorrencias",link:"/occurrences"},
         ];
 
         const sections = lista.map((element, index)=>{return new SectionModel(element.titulo, index == selectedIndex,element.link)});
