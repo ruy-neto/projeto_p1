@@ -1,5 +1,15 @@
 {{> header}}
 <div id="app">
+  <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          Ocorrência registrada com sucesso!
+        </div>
+      </div>
+    </div>
+  </div>
+
 <div class="container mt-4">
     <form>
       <div class="mb-3">
@@ -63,7 +73,19 @@
             });
         },
         methods: {
+        showSuccessModal() {
+              const successModal = new bootstrap.Modal(document.getElementById('successModal'), {
+                backdrop: 'static', // Impede que o modal feche ao clicar fora
+                keyboard: false // Impede que o modal feche ao pressionar ESC
+              });
+              successModal.show();
 
+              // Define um intervalo para fechar o modal e redirecionar para a home
+              setTimeout(() => {
+                successModal.hide();
+                window.location.href = '/'; // Redireciona para a home
+              }, 2000); // Tempo em milissegundos
+            },
             confirm(){
               const params = {
                 "name_student":this.students.find((e) => e.id === this.selectedStudent)?.name,
@@ -75,6 +97,7 @@
               const url = "/occurrences";
             axios.post(url,params).then(response => {
                 console.log(response);
+                this.showSuccessModal();
             })
             .catch(error => {
                 this.calledModal = false;
