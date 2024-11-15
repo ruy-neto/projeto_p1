@@ -1,0 +1,111 @@
+{{> header}}
+<div id="app">
+  <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          Ocorrência registrada com sucesso!
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container mt-4">
+    <form>
+      <div class="mb-3">
+        <label for="aluno" class="form-label">Aluno</label>
+        <select id="aluno" class="form-select" v-model="selectedStudent">
+          <option v-for="student in students" :key="student.id" :value="student.id" value="[[student.id]]" > [[student.name]]</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="data" class="form-label">Data</label>
+        <input type="date" class="form-control" id="data" v-model="date">
+      </div>
+
+      <div class="mb-3">
+        <label for="descricao" class="form-label">Descrição</label>
+        <input type="text" class="form-control" id="descricao"  v-model="description">
+      </div>
+
+      <div class="mb-3">
+        <label for="observacao" class="form-label">Observação</label>
+        <textarea class="form-control" id="observacao" rows="3" v-model="observation"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="tipo" class="form-label">Tipo</label>
+        <select id="tipo" class="form-select" v-model="optionTypeOccurrence">
+          <option value="1">Comportamento</option>
+          <option value="2">Falta</option>
+          <option value="3">Doença</option>
+          <option value="4">Esquecimento</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary" @click.prevent="confirm">Enviar</button>
+    </form>
+  </div>
+</div>
+<script>
+    const app = Vue.createApp({
+         delimiters: ['[[', ']]'] ,
+        data() {
+            return {
+                date:'',
+                description: '',
+                observation: '',
+                optionTypeOccurrence:0,
+                students:[],
+                selectedStudent:0
+            }
+        },
+        mounted() {
+            const url = "/students";
+            axios.get(url).then(response => {
+                this.students = response.data;
+                console.log(this.students);
+            })
+            .catch(error => {
+                this.calledModal = false;
+                 console.log("Erro", error);
+            });
+        },
+        methods: {
+        showSuccessModal() {
+              const successModal = new bootstrap.Modal(document.getElementById('successModal'), {
+                backdrop: 'static', // Impede que o modal feche ao clicar fora
+                keyboard: false // Impede que o modal feche ao pressionar ESC
+              });
+              successModal.show();
+
+              // Define um intervalo para fechar o modal e redirecionar para a home
+              setTimeout(() => {
+                successModal.hide();
+                window.location.href = '/'; // Redireciona para a home
+              }, 2000); // Tempo em milissegundos
+            },
+            confirm(){
+              const params = {
+                "name_student":this.students.find((e) => e.id === this.selectedStudent)?.name,
+              "id_student":this.selectedStudent,
+              "date":this.date,
+              "description":this.description,
+              "observation":this.observation,
+              "type":""+this.optionTypeOccurrence};
+              const url = "/occurrences";
+            axios.post(url,params).then(response => {
+                console.log(response);
+                this.showSuccessModal();
+            })
+            .catch(error => {
+                this.calledModal = false;
+                 console.log("Erro", error);
+            });
+            }
+        }
+    });
+
+    app.mount('#app');
+</script>

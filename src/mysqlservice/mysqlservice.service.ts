@@ -90,6 +90,19 @@ export class MysqlService {
       }
     }
 
+    async insertOccurence(body: any) : Promise<any> {
+      const connection = await this.pool.getConnection();
+      const query = `INSERT INTO occurrences (id_student, date, description, observation, type) VALUES (${body.id_student}, "${body.date}", "${body.description}", "${body.observation}", ${body.type})`;
+
+      return connection.query(query);
+    }
+
+    async callGetAllStudents() : Promise<any>  {
+      const connection = await this.pool.getConnection();
+      const query = `select id,name from USER where rank = 1`;
+      return connection.query(query);
+    }
+
     async callQRCodeChecker(qrcode: string) : Promise<any>  {
       const connection = await this.pool.getConnection();
       const query = `select alunotable.id as studentid,alunotable.name as studentname, parent.name as parentname from USER alunotable inner join USER parent on parent.id = alunotable.parent where alunotable.qrcode = ${qrcode}`;

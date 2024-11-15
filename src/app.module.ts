@@ -16,6 +16,8 @@ import { join } from 'path';
 import { QrcodeController } from './qrcode/qrcode.controller';
 import { RegistryController } from './registry/registry.controller';
 import { RegistryService } from './registry/registry/registry.service';
+import { OccurrencesController } from './occurrences/occurrences.controller';
+import { StudentsController } from './students/students.controller';
 
 @Module({
   imports: [CadastrarModule,  
@@ -41,7 +43,7 @@ import { RegistryService } from './registry/registry/registry.service';
       },
     })
   ],
-  controllers: [AppController, HomeController, ManagerusersController, RegistrateController, QrcodeController, RegistryController],
+  controllers: [AppController, HomeController, ManagerusersController, RegistrateController, QrcodeController, RegistryController, OccurrencesController, StudentsController],
   providers: [AppService,MysqlService,DatabaseConfig, ManagerService,RegistryService],
 })
 export class AppModule {}

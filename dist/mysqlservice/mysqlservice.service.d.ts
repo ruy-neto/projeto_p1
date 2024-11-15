@@ -10,6 +10,8 @@ export declare class MysqlService {
     getGuardRegistriesList(id: number): Promise<any>;
     getParentRegistriesList(id: number): Promise<any>;
     callAddUser(user: any): Promise<any>;
+    insertOccurence(body: any): Promise<any>;
+    callGetAllStudents(): Promise<any>;
     callQRCodeChecker(qrcode: string): Promise<any>;
     hashPassword(password: string): Promise<string>;
     callQRCODERegister(id_guard: number, id_student: number, ischeckin: number): Promise<any>;

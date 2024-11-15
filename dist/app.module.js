@@ -25,6 +25,8 @@ const path_1 = require("path");
 const qrcode_controller_1 = require("./qrcode/qrcode.controller");
 const registry_controller_1 = require("./registry/registry.controller");
 const registry_service_1 = require("./registry/registry/registry.service");
+const occurrences_controller_1 = require("./occurrences/occurrences.controller");
+const students_controller_1 = require("./students/students.controller");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -53,7 +55,7 @@ exports.AppModule = AppModule = __decorate([
                 },
             })
         ],
-        controllers: [app_controller_1.AppController, home_controller_1.HomeController, managerusers_controller_1.ManagerusersController, registrate_controller_1.RegistrateController, qrcode_controller_1.QrcodeController, registry_controller_1.RegistryController],
+        controllers: [app_controller_1.AppController, home_controller_1.HomeController, managerusers_controller_1.ManagerusersController, registrate_controller_1.RegistrateController, qrcode_controller_1.QrcodeController, registry_controller_1.RegistryController, occurrences_controller_1.OccurrencesController, students_controller_1.StudentsController],
         providers: [app_service_1.AppService, mysqlservice_service_1.MysqlService, database_config_1.DatabaseConfig, manager_service_1.ManagerService, registry_service_1.RegistryService],
     })
 ], AppModule);

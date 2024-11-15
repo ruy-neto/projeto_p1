@@ -1,19 +1,294 @@
 <main>
-    <div class="container vh-100 d-flex justify-content-center align-items-center">
-  <form action="/" method="post">
-    <div class="form-group">
-      <label for="usuario">Usuário:</label>
-      <input type="text" class="form-control" id="usuario" name="user" required>
-    </div>
-    <p></p>
-    <div class="form-group">
-      <label for="senha">Senha:</label>
-      <input type="password" class="form-control" id="senha" name="password" required>
-    </div>
-    <p></p>
-    <button type="submit" class="btn btn-primary">
-      Entrar
+{{!Aba de Navegação------------------------------------------------------------------------------------------------------------------------------------------------------------------}}
+<nav style="padding: 20px; background-color: rgb(177, 166, 50);" class="navbar navbar-extend-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><strong>Inicio</strong></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
-  </form>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+    <li class="nav-item">
+      <a style="color: white;" class="nav-link" href="#oquefazemos"><b>Oque fazemos?</b></a>
+    </li>
+    <li class="nav-item">
+      <a style="color: white;" class="nav-link" href="#responsavel"><b>Para os Responsáveis</b></a>
+    </li>
+    <li class="nav-item">
+      <a style="color: white;" class="nav-link" href="#motorista"><b>Para o Motorista</b></a>
+    </li>
+    <li class="nav-item">
+      <a style="color: white;" class="nav-link" href="#sobrenos"><b>Oque falam sobre nós?</b></a>
+    </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{{!Tela de Login---------------------------------------------------------------------------------------------------------------------------------------------------------------------}}
+  <div style="background-color: rgb(255, 232, 29);">
+    <div style="text-align: end; padding:40px;">
+      <button style="background-color:white">
+        <a style="color: black; text-decoration: none;" href="javascript:void(changeFontSize('-'))"><b>A-</b></a>
+      </button>
+      <button style="background-color:white">
+        <a style="color: black; text-decoration: none;" href="javascript:void(changeFontSize('+'))"><b>A+</b></a>
+      </button>
+    </div>
+   <div class="container vh-100 d-flex justify-content-center align-items-center">
+    <div>
+      <h2 style="text-align: center; padding: 20px">Seja Bem-Vindo(a)!</h2>
+    <div class="container d-flex justify-content-center align-items-center" style="padding: 20px; background-color:rgb(177, 166, 50)">
+     <form action="/" method="post">
+      <div class="form-group">
+       <label for="usuario"><b>Usuário:</b></label>
+       <input type="text" class="form-control" id="usuario" name="user" placeholder="Nome" required>
+     </div>
+     <p></p>
+      <div class="form-group">
+       <label for="senha"><b>Senha:</b></label>
+       <input type="password" class="form-control" id="senha" name="password" placeholder="Senha" required>
+      </div>
+      <p></p>
+       <div style="text-align: center">
+        <button style="background-color: rgb(246, 217, 65)" type="submit" class="btn btn-warning">
+          Entrar
+        </button>
+       </div> 
+   </form>
+  </div>
+  </div>
+  </div>
+ </div>
+
+<div class="container justify-content-center">
+<h2 style="margin: 80px";>
+  <strong>Somos a ponte entre os pais, escolas e transportadores, tornando o transporte escolar em uma jornada mais segura, transparente e confiável para todos.</strong>
+</h2>
 </div>
+
+<hr>
+
+<div class="container justify-content-center">
+<div>
+<h2 id="oquefazemos" style="margin-top: 40px";>
+  <strong>O que fazemos?</strong>
+</h2>
+</div>
+<br>
+
+<div class="container justify-content-center">
+  <div class="row">
+    <div class="col">
+      <p class="text-wrap"><strong>Segurança na Busca e Entrega de Crianças em São Paulo.</strong></p>
+      <p></p>
+      <p class="text-wrap">Nossa aplicação tem como objetivo primordial garantir a segurança das crianças durante todo o processo de busca e entrega nas escolas e em suas residências. Compreendemos a importância crítica desse serviço, especialmente após incidentes relacionados com o abandono de crianças dentro dos transportes escolares e esquecimento de busca e entrega das mesmas.</p>
+    </div>
+    <div class="col">
+      <img src="https://www.devanpraescola.com.br/img/Site/Van.png" style="width: 100%"; alt="Transporte Escolar.">
+    </div>
+  </div>
+</div>
+</div>
+
+<br>
+
+<hr>
+
+<div class="container justify-content-center">
+<h2 id="responsavel" style="margin-top: 40px">
+  <strong>Para os Responsáveis.</strong>
+</h2>
+
+<br>
+
+<div class="container justify-content-center">
+  <div class="row">
+    <div class="col">
+      <p aria-label="Tranquilidade e Confiança."><strong>Tranquilidade e Confiança.</strong></p>
+      <p></p>
+      <p class="text-wrap">Saber que seus filhos estão sendo transportados com segurança e cuidado, proporciona aos pais uma tranquilidade e a confiança de que estão tomando todas as medidas necessárias para garantir o bem-estar de seus filhos.</p>
+      <p></p>
+      <p class="text-wrap">Nosso aplicativo promove transparência total, fornecendo aos pais acesso fácil a informações detalhadas sobre todas as atividades relacionadas ao transporte escolar de seus filhos, desde o registro de presença até o monitoramento do trajeto.</p>
+    </div>
+    <div class="col">
+      <img src="https://www.cmbh.mg.gov.br/sites/default/files/styles/2_colunas_desktop_teste/public/noticias_destaques/2021/05/escolas.jpg?itok=icbEm1DK&timestamp=1621289119" style="width: 100%"; alt="Crianças com mochilas.">
+    </div>
+  </div>
+</div>
+</div>
+
+<br>
+
+<hr>
+
+<div class="container justify-content-center">
+<h2 id="motorista" style="margin-top: 40px"; aria-label="Para o Motorista.">
+  <strong>Para o Motorista.</strong>
+</h2>
+
+<br>
+
+<div class="container justify-content-center">
+  <div class="row">
+    <div class="col">
+      <p><strong>Suporte e Reconhecimento.</strong></p>
+      <p></p>
+      <p class="text-wrap">Valorizamos e apoiamos ativamente os motoristas, fornecendo suporte e reconhecimento por seu trabalho árduo e comprometimento com a segurança e o bem-estar das crianças.</p>
+      <p></p>
+      <p class="text-wrap">Com funcionalidades avançadas de planejamento de rotas e monitoramento, nosso aplicativo ajuda os motoristas a otimizar seu tempo e seus recursos, garantindo uma entrega eficiente e pontual das crianças em suas casas.</p>
+    </div>
+    <div class="col">
+      <img src="https://sebrae.com.br/Sebrae/Portal%20Sebrae/Ideias%20de%20Negocio/Importer/Imagens/27-Motorista%20Transporte%20Escolar.png" style="width: 100%"; alt="Motorista">
+    </div>
+  </div>
+</div>
+</div>
+
+<br>
+
+<hr>
+
+<div class="container justify-content-center">
+<h2 id="sobrenos" style="margin-top: 40px; margin-bottom: 40px";>
+  <strong>O que falam <br>sobre nós?</strong>
+</h2>
+<p></p>
+
+{{!Carrosel---------------------------------------------------------------------------------------------------------------------------------------------------------------------------}}
+
+<p></p>
+
+<div style="margin-left: 40px; margin-right: 40px";  id="carouselExample" class="carousel carousel-dark slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="container-d-flex">
+  <div class="row">
+    <div class="col">
+      <div style="padding: 50px; height: 100%;" class="card">
+        <img src="https://cdn.icon-icons.com/icons2/3251/PNG/512/person_circle_regular_icon_203391.png" class="card-img-top" style="width: 80px; height: 80px"; alt="Usuário">
+          <div class="card-body">
+            <h5 class="card-title">João - Responsável</h5>
+            <p></p>
+            <p class="card-text">"O uso do site é bem simples e me passa tranquilidade, sabendo que a que minha filha chegou na escola normalmente."</p>
+          </div>
+      </div>
+    </div>
+    <div class="col">
+      <div style="padding: 50px; height: 100%;" class="card">
+        <img src="https://cdn.icon-icons.com/icons2/3251/PNG/512/person_circle_regular_icon_203391.png" class="card-img-top" style="width: 80px; height: 80px"; alt="Usuário">
+          <div class="card-body">
+            <h5 class="card-title">Patricia - Motorista</h5>
+            <p></p>
+            <p class="card-text">"O site facilita o trabalho da monitora e proporciona uma solução bem prática para o monitoramento dos pequenos."</p>
+          </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>  
+    <div class="carousel-item">
+      <div class="container-d-flex">
+  <div class="row">
+    <div class="col">
+      <div style="padding: 50px; height: 100%;" class="card">
+        <img src="https://cdn.icon-icons.com/icons2/3251/PNG/512/person_circle_regular_icon_203391.png" class="card-img-top" style="width: 80px; height: 80px"; alt="Usuário">
+          <div class="card-body">
+            <h5 class="card-title">Maria - Responsável</h5>
+            <p></p>
+            <p class="card-text">"Eu gostei do site, inicialmente eu não tinha entendido muito bem como usar, mas depois de um tempo peguei a manha, achei ele bem prático."</p>
+          </div>
+      </div>
+    </div>
+    <div class="col">
+      <div style="padding: 50px; height: 100%;" class="card">
+        <img src="https://cdn.icon-icons.com/icons2/3251/PNG/512/person_circle_regular_icon_203391.png" class="card-img-top" style="width: 80px; height: 80px"; alt="Usuário">
+          <div class="card-body">
+            <h5 class="card-title">Ricardo - Coordenador da EMEI</h5>
+            <p></p>
+            <p class="card-text">"Acredito que com a implementação dessa ferramenta os pais podem ficar mais aliviados com o monitoramento dos filhos e nós termos um controle maior sobre a ida e chegada dos alunos."</p>
+          </div>
+      </div>
+    </div>
+  </div>
+    </div>
+ </div> 
+  <button style="width: 60px;" class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Antes</span>
+  </button>
+  <button style="width: 60px;" class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Próximo</span>
+  </button>
+</div>
+</div>
+
+<p></p>
+
+{{!Acordeão--------------------------------------------------------------------------------------------------------------------------------------------------------------------------}}
+
+<div class="accordion" id="accordionExample" style="margin-left: 40px; margin-right: 40px; margin-bottom: 80px;">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Como usar
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+      A plataforma em sí é bem simples, basta inserir as suas informações de login no inicio da página e acessar, cada tipo de usuário possui opções diferentes, mas no geral a plataforma é bem intuitiva e facil de usar.
+      </div>
+    </div>
+  </div>
+
+  <p></p>
+
+  <div class="accordion-item border">
+    <h2 style="border-top: 1px;" class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Como funciona para profissionais
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+      Após acessar a plataforma, os membros do TEG (Transporte Escolar Gratuito) terão acesso a lista de registro de chegada/saída dos alunos, que vai ser preenchida de acordo com a leitura do crachá de cada aluno, utilizando o leitor de QRcode nativo da plataforma.
+      </div>
+    </div>
+  </div>
+
+  <p></p>
+
+  <div class="accordion-item border">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+       Como funciona para os pais
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+      Após fazerem o acesso na plataforma, os pais vão ter acesso a aba de "Registros", que vai mostrar os registros de chegada/saída do aluno(a).
+      </div>
+    </div>
+  </div>
+  
+  <p></p>
+
+    <div class="accordion-item border">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+        Como funciona para a escola
+      </button>
+    </h2>
+    <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+      A escola vai ter a função de fazer o cadastro e gerenciamento dos usuários do sistema, ou seja, dos alunos, responsáveis e dos motoristas do TEG (Transporte Escolar Gratuito).
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<p></p>
+
 </main>
