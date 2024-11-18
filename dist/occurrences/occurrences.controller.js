@@ -56,7 +56,7 @@ let OccurrencesController = class OccurrencesController {
             const response = await axios_1.default.post('https://sms.comtele.com.br/api/v2/send', {
                 Sender: 'sender_id',
                 Receivers: '11981309580',
-                Content: `TEG INFORMA:Olá, caro(a) responsável da ${name}, tivemos uma ocorrência inesperada com um dos alunos. Razão: ${this.getEnumKeyByValue(Number(type))}`
+                Content: `TEG-INFORMA : Olá, caro(a) responsável da ${name}, tivemos uma ocorrência inesperada com um dos alunos. Razão: ${this.getEnumKeyByValue(Number(type))}`
             }, {
                 headers: {
                     'Content-Type': 'application/json',

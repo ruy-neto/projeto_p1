@@ -10,6 +10,30 @@
     <script src="/jsqr/dist/jsQR.js"></script>
     <script src="/axios/dist/axios.js"></script>
     <script src="https://unpkg.com/vue@3"></script>
+    <script language='javascript'>
+var min=8;
+var max=18;
+function changeFontSize(opcao) {
+
+   // pega todos elementos deste tipo 
+   var p = document.getElementsByTagName('div');
+   // percorre-os
+   for(i = 0; i < p.length; i++) {
+      if(p[i].style.fontSize) {
+         var s = parseInt(p[i].style.fontSize.replace("px",""));
+      } else {
+         var s = 12;
+      }
+
+      if (opcao=='+') {
+        if(s!=max) { s += 1; }
+     } else {
+        if(s!=min) { s -= 1; }
+     }
+      p[i].style.fontSize = s+"px"
+   }
+}
+</script>
         <style>
         body {
             margin: 0;

@@ -2,7 +2,7 @@
 {{!Aba de Navegação------------------------------------------------------------------------------------------------------------------------------------------------------------------}}
 <nav style="padding: 20px; background-color: rgb(177, 166, 50);" class="navbar navbar-extend-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"><b>Inicio</b></a>
+    <a class="navbar-brand" href="#"><strong>Inicio</strong></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -27,9 +27,17 @@
 
 {{!Tela de Login---------------------------------------------------------------------------------------------------------------------------------------------------------------------}}
   <div style="background-color: rgb(255, 232, 29);">
+    <div style="text-align: end; padding:40px;">
+      <button style="background-color:white">
+        <a style="color: black; text-decoration: none;" href="javascript:void(changeFontSize('-'))"><b>A-</b></a>
+      </button>
+      <button style="background-color:white">
+        <a style="color: black; text-decoration: none;" href="javascript:void(changeFontSize('+'))"><b>A+</b></a>
+      </button>
+    </div>
    <div class="container vh-100 d-flex justify-content-center align-items-center">
     <div>
-      <h1 style="text-align: center; padding: 20px">Seja Bem-Vindo(a)!</h1>
+      <h2 style="text-align: center; padding: 20px">Seja Bem-Vindo(a)!</h2>
     <div class="container d-flex justify-content-center align-items-center" style="padding: 20px; background-color:rgb(177, 166, 50)">
      <form action="/" method="post">
       <div class="form-group">
@@ -54,18 +62,19 @@
  </div>
 
 <div class="container justify-content-center">
-<h1 style="margin: 80px";>
+<h2 style="margin: 80px";>
   <strong>Somos a ponte entre os pais, escolas e transportadores, tornando o transporte escolar em uma jornada mais segura, transparente e confiável para todos.</strong>
-</h1>
+</h2>
 </div>
 
 <hr>
 
 <div class="container justify-content-center">
-<h1 id="oquefazemos" style="margin-top: 40px";>
-  <strong>O que <br>fazemos?</strong>
-</h1>
-
+<div>
+<h2 id="oquefazemos" style="margin-top: 40px";>
+  <strong>O que fazemos?</strong>
+</h2>
+</div>
 <br>
 
 <div class="container justify-content-center">
@@ -87,9 +96,9 @@
 <hr>
 
 <div class="container justify-content-center">
-<h1 id="responsavel" style="margin-top: 40px">
+<h2 id="responsavel" style="margin-top: 40px">
   <strong>Para os Responsáveis.</strong>
-</h1>
+</h2>
 
 <br>
 
@@ -114,9 +123,9 @@
 <hr>
 
 <div class="container justify-content-center">
-<h1 id="motorista" style="margin-top: 40px"; aria-label="Para o Motorista.">
+<h2 id="motorista" style="margin-top: 40px"; aria-label="Para o Motorista.">
   <strong>Para o Motorista.</strong>
-</h1>
+</h2>
 
 <br>
 
@@ -141,9 +150,9 @@
 <hr>
 
 <div class="container justify-content-center">
-<h1 id="sobrenos" style="margin-top: 40px; margin-bottom: 40px";>
+<h2 id="sobrenos" style="margin-top: 40px; margin-bottom: 40px";>
   <strong>O que falam <br>sobre nós?</strong>
-</h1>
+</h2>
 <p></p>
 
 {{!Carrosel---------------------------------------------------------------------------------------------------------------------------------------------------------------------------}}
