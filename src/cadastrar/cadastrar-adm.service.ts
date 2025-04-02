@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { MysqlService } from 'src/mysqlservice/mysqlservice.service';
+import { PostgresService } from 'src/mysqlservice/mysqlservice.service';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class CadastrarAdmService {
-    constructor(private readonly mysqlService: MysqlService) {}
+    constructor(private readonly mysqlService: PostgresService) {}
     async cadastrarAdmin(user: string, password: string): Promise<any> {
         const haspass = await this.hashPassword(password);
         return this.mysqlService.callCadastrarAdmin("inserir_admin",[user,haspass]);

@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { MysqlService } from 'src/mysqlservice/mysqlservice.service';
+import { PostgresService } from 'src/mysqlservice/mysqlservice.service';
 
 @Injectable()
 export class ManagerService {
-    constructor(private readonly mysqlService: MysqlService) {}
+    constructor(private readonly mysqlService: PostgresService) {}
     async addUser(user: any): Promise<[any]> {
       return this.mysqlService.callAddUser(user);
     }

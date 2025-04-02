@@ -26,6 +26,6 @@ let RegistryService = class RegistryService {
 exports.RegistryService = RegistryService;
 exports.RegistryService = RegistryService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [mysqlservice_service_1.MysqlService])
+    __metadata("design:paramtypes", [mysqlservice_service_1.PostgresService])
 ], RegistryService);
 //# sourceMappingURL=registry.service.js.map

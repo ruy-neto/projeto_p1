@@ -3,13 +3,13 @@ import { JwtService } from '@nestjs/jwt';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { ISession } from 'src/models/ISession';
 import { MenuModel } from 'src/models/MenuModel';
-import { MysqlService } from 'src/mysqlservice/mysqlservice.service';
+import { PostgresService } from 'src/mysqlservice/mysqlservice.service';
 import { Response } from 'express';
 import {Tipo} from '../occurencie';
 import axios from 'axios';
 @Controller('occurrences')
 export class OccurrencesController {
-    constructor(public jwtService:JwtService,private readonly mysqlService:MysqlService) {}
+    constructor(public jwtService:JwtService,private readonly mysqlService:PostgresService) {}
     @Get()
     @Render("occurrences")
     @UseGuards(AuthGuard)
@@ -28,18 +28,14 @@ export class OccurrencesController {
         try {
             console.log("1");
             const queryresult = await this.mysqlService.insertOccurence(body);
-            const array = queryresult[0] as any[];
-            if (array.length == 0) {
-                console.log("2");
-                res.status(HttpStatus.BAD_REQUEST);
-            } else {
-                console.log("3");
-                this.sendsms(body.name_student,body.type)
-                res.status(HttpStatus.OK).json(queryresult.at(0));
-            }
+            console.log("3");
+            this.sendsms(body.name_student,body.type)
+            res.status(HttpStatus.OK).json(queryresult.at(0));
+            
         } catch (error) {
             console.log("4");
             console.log(error);
+            res.status(HttpStatus.BAD_REQUEST);
         }
     }
 

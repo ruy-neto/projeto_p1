@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { MysqlService } from './mysqlservice/mysqlservice.service';
+import { PostgresService } from './mysqlservice/mysqlservice.service';
 
 @Injectable()
 export class AppService {
-  constructor(private readonly mysqlService: MysqlService) {}
+  constructor(private readonly mysqlService: PostgresService) {}
   getHello(): string {
     return 'Hello World!';
   }

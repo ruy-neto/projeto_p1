@@ -25,10 +25,11 @@ export class AppController {
     if (element == null) {
       return 'Não existe esse usuário!';
     } else {
-      const elementPassword = element[0][0].password;
+      const elementPassword = element.password;
       if (await bcrypt.compare( body.password,elementPassword)) {
-        const token = this.jwtService.sign({ id:element[0][0].id,user: element[0][0].user, rank: element[0][0].rank });
+        const token = this.jwtService.sign({ id:element.id,user: element.user, rank: element.rank });
         session.token = token;
+        console.log("Vou te direcionar para a home");
         return res.redirect('/home')
       } else {
         return 'Senha errada!';

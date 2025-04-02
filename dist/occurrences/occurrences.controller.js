@@ -35,20 +35,14 @@ let OccurrencesController = class OccurrencesController {
         try {
             console.log("1");
             const queryresult = await this.mysqlService.insertOccurence(body);
-            const array = queryresult[0];
-            if (array.length == 0) {
-                console.log("2");
-                res.status(common_1.HttpStatus.BAD_REQUEST);
-            }
-            else {
-                console.log("3");
-                this.sendsms(body.name_student, body.type);
-                res.status(common_1.HttpStatus.OK).json(queryresult.at(0));
-            }
+            console.log("3");
+            this.sendsms(body.name_student, body.type);
+            res.status(common_1.HttpStatus.OK).json(queryresult.at(0));
         }
         catch (error) {
             console.log("4");
             console.log(error);
+            res.status(common_1.HttpStatus.BAD_REQUEST);
         }
     }
     async sendsms(name, type) {
@@ -95,6 +89,6 @@ __decorate([
 ], OccurrencesController.prototype, "create", null);
 exports.OccurrencesController = OccurrencesController = __decorate([
     (0, common_1.Controller)('occurrences'),
-    __metadata("design:paramtypes", [jwt_1.JwtService, mysqlservice_service_1.MysqlService])
+    __metadata("design:paramtypes", [jwt_1.JwtService, mysqlservice_service_1.PostgresService])
 ], OccurrencesController);
 //# sourceMappingURL=occurrences.controller.js.map

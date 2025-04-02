@@ -9,7 +9,7 @@ async function bootstrap() {
     AppModule,
   );
 
-  app.useStaticAssets(join(__dirname, '..', 'public'));
+  // app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.set('view engine', 'hbs');
   app.engine('hbs', engine({

@@ -26,6 +26,6 @@ let ManagerService = class ManagerService {
 exports.ManagerService = ManagerService;
 exports.ManagerService = ManagerService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [mysqlservice_service_1.MysqlService])
+    __metadata("design:paramtypes", [mysqlservice_service_1.PostgresService])
 ], ManagerService);
 //# sourceMappingURL=manager.service.js.map

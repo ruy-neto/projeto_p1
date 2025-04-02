@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { MysqlService } from 'src/mysqlservice/mysqlservice.service';
+import { PostgresService } from 'src/mysqlservice/mysqlservice.service';
 
 @Injectable()
 export class RegistryService {
 
-    constructor(private readonly mysqlService: MysqlService) {}
+    constructor(private readonly mysqlService: PostgresService) {}
 
     async getGuardRegistriesList(id: number): Promise<[any]> {
         return this.mysqlService.getGuardRegistriesList(id);

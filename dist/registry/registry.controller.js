@@ -32,8 +32,7 @@ let RegistryController = class RegistryController {
             case 2:
                 const idparent = bodySessionBody.id;
                 const tupleparent = await this.registryService.getParentRegistriesList(idparent);
-                const listParent = tupleparent[0];
-                const treatedListParent = listParent.map(element => {
+                const treatedListParent = tupleparent.map(element => {
                     var data = new Date(element.time);
                     var hora = data.getUTCHours();
                     var minuto = data.getUTCMinutes();
@@ -51,7 +50,7 @@ let RegistryController = class RegistryController {
             case 3:
                 const id = bodySessionBody.id;
                 const tuple = await this.registryService.getGuardRegistriesList(id);
-                const list = tuple[0];
+                const list = tuple;
                 console.log("Guarda Lista:", list);
                 const treatedList = list.map(element => {
                     var data = new Date(element.time);

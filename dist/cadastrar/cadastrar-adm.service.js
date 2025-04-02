@@ -29,6 +29,6 @@ let CadastrarAdmService = class CadastrarAdmService {
 exports.CadastrarAdmService = CadastrarAdmService;
 exports.CadastrarAdmService = CadastrarAdmService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [mysqlservice_service_1.MysqlService])
+    __metadata("design:paramtypes", [mysqlservice_service_1.PostgresService])
 ], CadastrarAdmService);
 //# sourceMappingURL=cadastrar-adm.service.js.map

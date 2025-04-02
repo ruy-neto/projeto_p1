@@ -27,14 +27,19 @@ const registry_controller_1 = require("./registry/registry.controller");
 const registry_service_1 = require("./registry/registry/registry.service");
 const occurrences_controller_1 = require("./occurrences/occurrences.controller");
 const students_controller_1 = require("./students/students.controller");
+const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
+        exports: [database_config_1.DatabaseConfig],
         imports: [cadastrar_module_1.CadastrarModule,
             serve_static_1.ServeStaticModule.forRoot({
                 rootPath: (0, path_1.join)(__dirname, '..', 'node_modules'),
+            }),
+            config_1.ConfigModule.forRoot({
+                isGlobal: true,
             }),
             jwt_1.JwtModule.register({
                 global: true,
@@ -56,7 +61,7 @@ exports.AppModule = AppModule = __decorate([
             })
         ],
         controllers: [app_controller_1.AppController, home_controller_1.HomeController, managerusers_controller_1.ManagerusersController, registrate_controller_1.RegistrateController, qrcode_controller_1.QrcodeController, registry_controller_1.RegistryController, occurrences_controller_1.OccurrencesController, students_controller_1.StudentsController],
-        providers: [app_service_1.AppService, mysqlservice_service_1.MysqlService, database_config_1.DatabaseConfig, manager_service_1.ManagerService, registry_service_1.RegistryService],
+        providers: [app_service_1.AppService, mysqlservice_service_1.PostgresService, database_config_1.DatabaseConfig, manager_service_1.ManagerService, registry_service_1.RegistryService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

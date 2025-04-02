@@ -1,11 +1,11 @@
 import { JwtService } from '@nestjs/jwt';
 import { MenuModel } from 'src/models/MenuModel';
-import { MysqlService } from 'src/mysqlservice/mysqlservice.service';
+import { PostgresService } from 'src/mysqlservice/mysqlservice.service';
 import { Response } from 'express';
 export declare class OccurrencesController {
     jwtService: JwtService;
     private readonly mysqlService;
-    constructor(jwtService: JwtService, mysqlService: MysqlService);
+    constructor(jwtService: JwtService, mysqlService: PostgresService);
     root(session: Record<string, any>): MenuModel;
     create(body: any, res: Response): Promise<void>;
     sendsms(name: string, type: string): Promise<any>;

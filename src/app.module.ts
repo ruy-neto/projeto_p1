@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CadastrarModule } from './cadastrar/cadastrar.module';
 import { DatabaseConfig } from './databaseconfig/database.config';
-import { MysqlService } from './mysqlservice/mysqlservice.service';
+import { PostgresService } from './mysqlservice/mysqlservice.service';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './auth/constants';
 import { HomeController } from './home/home.controller';
@@ -18,11 +18,16 @@ import { RegistryController } from './registry/registry.controller';
 import { RegistryService } from './registry/registry/registry.service';
 import { OccurrencesController } from './occurrences/occurrences.controller';
 import { StudentsController } from './students/students.controller';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
+  exports:[DatabaseConfig],
   imports: [CadastrarModule,  
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'node_modules'),
+    }),
+    ConfigModule.forRoot({
+      isGlobal: true, // disponibiliza em toda a aplicação
     }),
     JwtModule.register({
       global: true,
@@ -44,6 +49,6 @@ import { StudentsController } from './students/students.controller';
     })
   ],
   controllers: [AppController, HomeController, ManagerusersController, RegistrateController, QrcodeController, RegistryController, OccurrencesController, StudentsController],
-  providers: [AppService,MysqlService,DatabaseConfig, ManagerService,RegistryService],
+  providers: [AppService,PostgresService,DatabaseConfig, ManagerService,RegistryService],
 })
 export class AppModule {}

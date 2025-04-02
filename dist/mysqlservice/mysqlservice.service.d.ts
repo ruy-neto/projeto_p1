@@ -1,10 +1,10 @@
 import { DatabaseConfig } from 'src/databaseconfig/database.config';
-export declare class MysqlService {
+export declare class PostgresService {
     private readonly dbconfig;
     private pool;
     constructor(dbconfig: DatabaseConfig);
     query(sql: string, values?: any[]): Promise<any>;
-    callCadastrarAdmin(procedureName: string, parameters: any[]): Promise<any>;
+    callCadastrarAdmin(user: string, password: any[]): Promise<any>;
     callLogin(user: string): Promise<any>;
     callListParents(): Promise<any>;
     getGuardRegistriesList(id: number): Promise<any>;

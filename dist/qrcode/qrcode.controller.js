@@ -24,16 +24,19 @@ let QrcodeController = class QrcodeController {
     }
     async root(res, params) {
         try {
+            console.log("Cheguei até o qrcode");
             const queryresult = await this.mysqlService.callQRCodeChecker(params.code);
             const array = queryresult[0];
+            console.log("Valor do array", array);
             if (array.length == 0) {
                 res.status(404).send("QRCODE INVALIDO");
             }
             else {
-                res.status(200).send(new StudentResponse(array.at(0).studentid, array.at(0).studentname, array.at(0).parentname));
+                res.status(200).send(new StudentResponse(array.studentid, array.studentname, array.parentname));
             }
         }
         catch (error) {
+            console.log("Problema envolvendo banco", error);
             return "Problema envolvendo banco";
         }
     }
@@ -71,7 +74,7 @@ __decorate([
 exports.QrcodeController = QrcodeController = __decorate([
     (0, common_1.Controller)('qrcode'),
     (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
-    __metadata("design:paramtypes", [mysqlservice_service_1.MysqlService,
+    __metadata("design:paramtypes", [mysqlservice_service_1.PostgresService,
         jwt_1.JwtService])
 ], QrcodeController);
 class StudentResponse {

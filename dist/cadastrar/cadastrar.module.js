@@ -18,7 +18,7 @@ exports.CadastrarModule = CadastrarModule;
 exports.CadastrarModule = CadastrarModule = __decorate([
     (0, common_1.Module)({
         controllers: [cadastrar_controller_1.CadastrarController],
-        providers: [mysqlservice_service_1.MysqlService, cadastrar_adm_service_1.CadastrarAdmService, database_config_1.DatabaseConfig]
+        providers: [mysqlservice_service_1.PostgresService, cadastrar_adm_service_1.CadastrarAdmService, database_config_1.DatabaseConfig]
     })
 ], CadastrarModule);
 //# sourceMappingURL=cadastrar.module.js.map

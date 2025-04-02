@@ -24,6 +24,7 @@ let HomeController = class HomeController {
     root(res, session) {
         const sess = session;
         const bodySessionBody = this.jwtService.decode(session.token);
+        console.log("cheguei ate aqui com ranking" + bodySessionBody.rank);
         switch (bodySessionBody.rank) {
             default:
                 return res.redirect('/');

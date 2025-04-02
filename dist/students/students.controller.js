@@ -22,12 +22,12 @@ let StudentsController = class StudentsController {
     async getEstudantes(res) {
         try {
             const queryresult = await this.mysqlService.callGetAllStudents();
-            const array = queryresult[0];
+            const array = queryresult;
             if (array.length == 0) {
                 res.status(common_1.HttpStatus.BAD_REQUEST);
             }
             else {
-                res.status(common_1.HttpStatus.OK).json(queryresult.at(0));
+                res.status(common_1.HttpStatus.OK).json(queryresult);
             }
         }
         catch (error) {
@@ -45,6 +45,6 @@ __decorate([
 ], StudentsController.prototype, "getEstudantes", null);
 exports.StudentsController = StudentsController = __decorate([
     (0, common_1.Controller)('students'),
-    __metadata("design:paramtypes", [mysqlservice_service_1.MysqlService])
+    __metadata("design:paramtypes", [mysqlservice_service_1.PostgresService])
 ], StudentsController);
 //# sourceMappingURL=students.controller.js.map
